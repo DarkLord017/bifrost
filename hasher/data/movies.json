@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Star Wars",
+    "description": "A space adventure with galactic battles and heroic journeys"
+  },
+  {
+    "name": "The Godfather", 
+    "description": "Mafia family power struggles and organized crime in New York"
+  },
+  {
+    "name": "Inception",
+    "description": "A thief enters dreams to steal corporate secrets through mind manipulation"
+  },
+  {
+    "name": "The Matrix",
+    "description": "A computer hacker discovers the world is a simulation controlled by machines"
+  },
+  {
+    "name": "Pulp Fiction",
+    "description": "Interconnected stories of crime, redemption, and pop culture in Los Angeles"
+  },
+  {
+    "name": "The Shawshank Redemption",
+    "description": "A banker is sentenced to life in prison and finds hope through friendship"
+  }
+]
