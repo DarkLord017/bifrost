@@ -3,6 +3,7 @@ import { Search, Shield, TrendingUp } from "lucide-react";
 import { SearchBar } from "@/components/SearchBar";
 import { ResultCard } from "@/components/ResultCard";
 import { ProofModal } from "@/components/ProofModal";
+import { VectorBackground } from "@/components/VectorBackground";
 import { Button } from "@/components/ui/button";
 
 // Mock data for demonstration
@@ -87,8 +88,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="texture-overlay border-b border-border">
-        <div className="container mx-auto px-6 py-16">
+      <div className="relative texture-overlay border-b border-border">
+        <VectorBackground />
+        <div className="container mx-auto px-6 py-16 relative z-10">
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl heading-editorial text-foreground">
@@ -170,7 +172,20 @@ const Index = () => {
 
       {/* How it Works Section */}
       {searchResults.length === 0 && !isLoading && (
-        <div className="container mx-auto px-6 py-16">
+        <div className="relative container mx-auto px-6 py-16">
+          {/* Subtle background elements for this section */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <svg
+              className="absolute bottom-10 right-20 w-20 h-20 text-primary/4 transform rotate-45"
+              viewBox="0 0 80 80"
+              fill="none"
+            >
+              <circle cx="40" cy="40" r="30" stroke="currentColor" strokeWidth="1" fill="none" />
+              <circle cx="40" cy="40" r="20" stroke="currentColor" strokeWidth="0.8" fill="none" />
+              <circle cx="40" cy="40" r="10" stroke="currentColor" strokeWidth="0.6" fill="none" />
+              <circle cx="40" cy="40" r="2" fill="currentColor" />
+            </svg>
+          </div>
           <div className="text-center space-y-8">
             <h2 className="text-3xl heading-editorial text-foreground">How It Works</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
