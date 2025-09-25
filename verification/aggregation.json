@@ -1,0 +1,13 @@
+{
+    "root": "0x9c4ef514fcf49ec10e604de27a4c86a047841d14203bee235e3643f5161c371c",
+    "proof": [
+        "0x6659b830cf79e7fdb4ec6a7c9c7e338dffd9e083d59769d0fafad6fa8a7d4a6d",
+        "0xe2f5f367e82f351799e3a43a134ea202c15f2df7014861ee606186531be22c63",
+        "0x42a68e5b432685212a9821d7934153e33668f093f2ac1e75cd3fd254deeb96f4"
+    ],
+    "numberOfLeaves": 8,
+    "leafIndex": 3,
+    "leaf": "0x257c36026cf7569e33f004d159a315af161609ea84556c63b53458b479895df5",
+    "domainId": 0,
+    "aggregationId": 147453
+}
