@@ -1,73 +1,122 @@
-# Welcome to your Lovable project
+# 🌉 Bifrost
 
-## Project info
+**Verifiable Nearest Neighbor Search powered by RISC Zero + zkVerify + Horizen**
 
-**URL**: https://lovable.dev/projects/cc2e53df-ca94-465f-9bf5-59097e2594cf
+Bifrost is a **trustless vector search engine**. It allows you to:
 
-## How can I edit this code?
+  * Convert text (or structured data) into **embeddings**.
+  * Store datasets with embeddings and cryptographic commitments.
+  * Run **queries** and compute similarity (Euclidean distance).
+  * Generate **zk-proofs** (via RISC Zero) that the nearest neighbor is correct.
+  * Submit proofs to **zkVerify** for low-cost, fast, universal verification.
 
-There are several ways of editing your application.
+-----
 
-**Use Lovable**
+## ✨ Why Bifrost?
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/cc2e53df-ca94-465f-9bf5-59097e2594cf) and start prompting.
+Modern AI applications rely on vector databases for recommendations, search, and retrieval. However, users can't typically verify whether the result returned by the service is **honest** or optimal.
 
-Changes made via Lovable will be committed automatically to this repo.
+Bifrost solves this by ensuring:
 
-**Use your preferred IDE**
+  * 🔒 The **entire dataset** was searched.
+  * 🎯 The **closest vector** was correctly chosen.
+  * 🌐 Results can be verified on-chain via **zkVerify**.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+-----
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🏛️ Architecture
 
-Follow these steps:
+Bifrost provides an end-to-end verifiable computation flow, from data processing to on-chain verification and final presentation.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+1.  **Input & Embedding**: The user provides a dataset and a query. Using a local model via **Ollama**, the system generates vector embeddings for the data.
+2.  **Search & Prove**: The system performs a nearest neighbor search to find the most similar vector. A **Zero-Knowledge Proof** is then generated using **RISC Zero**, attesting that the search was executed correctly over the entire dataset.
+3.  **Verify & Relay**: The ZK proof is sent to **zkVerify** for efficient and universal verification.
+4.  **On-Chain Check**: A smart contract deployed on the **Horizen** blockchain checks if the aggregate proof has been verified by zkVerify.
+5.  **Frontend Display**: The frontend application queries the smart contract to confirm the verification status and displays the result to the user, marked as either "valid" or "invalid".
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+<!-- end list -->
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```mermaid
+graph TD
+    A[👤 User <br/> Inputs Data & Query] --> B[🧠 Ollama <br/> Generates Vector Embeddings];
+    B --> C[🔎 Nearest Neighbor Search];
+    C --> D[🔒 RISC Zero <br/> Generates ZK Proof];
+    D --> E[✅ zkVerify <br/> Verifies Proof];
+    E --> F[📜 Horizen Smart Contract <br/> Checks Verification Status];
+    F --> G[💻 Frontend <br/> Displays Result & Validity];
 ```
 
-**Edit a file directly in GitHub**
+-----
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## ⚡️ Setup
 
-**Use GitHub Codespaces**
+### Prerequisites
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+  * [Rust](https://rustup.rs/)
+  * [Ollama](https://ollama.com/) (for local embeddings)
+  * [RISC Zero](https://github.com/risc0/risc0) (for zkVM proving)
+  * [zkVerify SDK](https://docs.zkverify.io/) (for submitting proofs)
 
-## What technologies are used for this project?
+-----
 
-This project is built with:
+## 🔎 Usage
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 1\. Prepare dataset
 
-## How can I deploy this project?
+Create a JSON file with your data (e.g. `movies.json`):
 
-Simply open [Lovable](https://lovable.dev/projects/cc2e53df-ca94-465f-9bf5-59097e2594cf) and click on Share -> Publish.
+```json
+[
+  { "name": "Star Wars", "description": "A space adventure with galactic battles" },
+  { "name": "The Godfather", "description": "Mafia family struggles in New York" },
+  { "name": "Inception", "description": "A thief enters dreams to steal secrets" }
+]
+```
 
-## Can I connect a custom domain to my Lovable project?
+### 2\. Generate embeddings (Index)
 
-Yes, you can!
+```sh
+cargo run --bin embedder index -p ./data/movies.json
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+👉 Produces `movies.index.json` with embeddings + SHA256 hashes.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### 3\. Generate query embedding
+
+```sh
+cargo run --bin embedder query -p ./data/movies.json -t "A young hero fights in space"
+```
+
+👉 Produces `movies.query.json`.
+
+### 4\. Run nearest neighbor search
+
+Use the Euclidean distance search function:
+
+```rust
+let best_idx = compute_best_sample(&samples, &query);
+println!("Best match: {}", metadata[best_idx].name);
+```
+
+Example output:
+
+```
+Best match: Star Wars
+Description: A space adventure with galactic battles
+```
+
+-----
+
+## 🚀 Deployment
+
+  * **Live Demo**: `https://.....`
+  * **Smart Contract on Horizen Testnet**: [`0xDa71...210a2`](https://www.google.com/search?q=%5Bhttps://horizen-explorer-testnet.appchain.base.org/address/0xDa713271a47abd0421183c330f720a67C69210a2%3Ftab%3Dtxs%5D\(https://horizen-explorer-testnet.appchain.base.org/address/0xDa713271a47abd0421183c330f720a67C69210a2%3Ftab%3Dtxs\))
+
+-----
+
+## 📊 Example Run
+
+  * **Dataset**: `movies.json` (10 movies).
+  * **Query**: `"A young hero fights in space"`.
+  * **Result**: `Star Wars`.
+  * **Proof**: Verified on zkVerify and confirmed by the Horizen smart contract.
