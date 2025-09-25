@@ -2,41 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Aligned VNNs Design System - Editorial, trustworthy, handcrafted feel */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Core color palette - light, tactile, editorial */
+    --bg: 41 29% 98%;           /* #FBFAF8 - off-white background */
+    --surface: 0 0% 100%;        /* #FFFFFF - pure white cards */
+    --text: 215 30% 9%;          /* #0F1720 - deep charcoal */
+    --muted: 210 10% 39%;        /* #56606A - slate gray */
+    --primary: 189 85% 29%;      /* #0B7285 - teal accent (sparing use) */
+    --accent-warm: 15 75% 67%;   /* #E98A6A - soft coral highlights */
+    --success: 142 69% 39%;      /* #16A34A - green for verified states */
+    --border: 213 14% 91%;       /* #E6E8EA - light gray borders */
+    
+    /* Semantic mappings */
+    --background: var(--bg);
+    --foreground: var(--text);
+    --card: var(--surface);
+    --card-foreground: var(--text);
+    --popover: var(--surface);
+    --popover-foreground: var(--text);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 213 14% 96%;
+    --secondary-foreground: var(--text);
+    --muted-foreground: var(--muted);
+    --accent: var(--accent-warm);
+    --accent-foreground: var(--text);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --input: var(--border);
+    --ring: var(--primary);
+    
+    /* Tactile spacing & effects */
+    --radius: 0.75rem;           /* 12px - soft, tactile corners */
+    --shadow-soft: 0 6px 18px rgba(16, 24, 32, 0.06);
+    --shadow-card: 0 2px 8px rgba(16, 24, 32, 0.04);
+    --shadow-lifted: 0 8px 24px rgba(16, 24, 32, 0.08);
+    
+    /* Typography scale */
+    --text-xs: 0.75rem;    /* 12px */
+    --text-sm: 0.875rem;   /* 14px */
+    --text-base: 1rem;     /* 16px */
+    --text-lg: 1.125rem;   /* 18px */
+    --text-xl: 1.25rem;    /* 20px */
+    --text-2xl: 1.75rem;   /* 28px */
+    --text-3xl: 2.125rem;  /* 34px */
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +112,63 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Editorial typography styles */
+  .heading-editorial {
+    @apply font-serif font-bold leading-tight;
+  }
+  
+  .text-mono {
+    @apply font-mono text-sm tracking-tight;
+  }
+  
+  /* Tactile card styles with soft shadows */
+  .card-tactile {
+    @apply bg-card border border-border rounded-xl shadow-[var(--shadow-card)] transition-all duration-200;
+  }
+  
+  .card-tactile:hover {
+    @apply shadow-[var(--shadow-lifted)] transform -translate-y-0.5;
+  }
+  
+  /* Search input with editorial feel */
+  .search-input {
+    @apply w-full px-6 py-4 text-lg bg-surface border border-border rounded-xl 
+           placeholder:text-muted-foreground focus:outline-none focus:ring-2 
+           focus:ring-primary/20 focus:border-primary transition-all duration-200;
+  }
+  
+  /* Proof verification badges */
+  .proof-verified {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 bg-success/10 text-success 
+           text-sm font-medium rounded-full border border-success/20;
+  }
+  
+  .proof-unverified {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 bg-muted/10 text-muted 
+           text-sm font-medium rounded-full border border-muted/20;
+  }
+  
+  /* Hash display styles */
+  .hash-display {
+    @apply font-mono text-xs bg-muted/5 px-2 py-1 rounded border 
+           border-muted/20 text-muted cursor-pointer hover:bg-muted/10 
+           transition-colors duration-150;
+  }
+  
+  /* Metric display */
+  .metric-item {
+    @apply flex items-center gap-1 text-sm text-muted-foreground;
+  }
+  
+  /* Subtle texture overlay for hero sections */
+  .texture-overlay {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(11, 114, 133, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(233, 138, 106, 0.02) 0%, transparent 50%);
   }
 }
