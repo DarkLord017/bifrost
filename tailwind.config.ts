@@ -117,12 +117,64 @@ export default {
             opacity: "1"
           }
         },
+        "float": {
+          "0%, 100%": {
+            transform: "translateY(0px)"
+          },
+          "50%": {
+            transform: "translateY(-20px)"
+          }
+        },
+        "rotate-slow": {
+          "0%": {
+            transform: "rotate(0deg)"
+          },
+          "100%": {
+            transform: "rotate(360deg)"
+          }
+        },
+        "rotate-reverse": {
+          "0%": {
+            transform: "rotate(0deg)"
+          },
+          "100%": {
+            transform: "rotate(-360deg)"
+          }
+        },
+        "pulse-slow": {
+          "0%, 100%": {
+            opacity: "0.3"
+          },
+          "50%": {
+            opacity: "0.8"
+          }
+        },
+        "drift": {
+          "0%, 100%": {
+            transform: "translateX(0px) translateY(0px)"
+          },
+          "25%": {
+            transform: "translateX(10px) translateY(-10px)"
+          },
+          "50%": {
+            transform: "translateX(-5px) translateY(-20px)"
+          },
+          "75%": {
+            transform: "translateX(-10px) translateY(-5px)"
+          }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "scale-in": "scale-in 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "float-delayed": "float 8s ease-in-out infinite 2s",
+        "rotate-slow": "rotate-slow 20s linear infinite",
+        "rotate-reverse": "rotate-reverse 15s linear infinite",
+        "pulse-slow": "pulse-slow 4s ease-in-out infinite",
+        "drift": "drift 12s ease-in-out infinite",
       },
     },
   },
