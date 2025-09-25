@@ -94,7 +94,7 @@ export function ProofModal({
           {/* Summary */}
           <div className="card-tactile p-4 bg-primary/5 border-primary/20">
             <p className="text-sm text-foreground">
-              This result was produced by recursively searching committed batches and submitted to Aligned Layer for verifiable proof.
+              This result was produced by recursively searching committed batches and submitted to zk verify for verifiable proof.
             </p>
           </div>
 
@@ -265,7 +265,7 @@ export function ProofModal({
                 className="bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
-                Verify on Aligned Layer
+                Verify on zk verify
               </Button>
             )}
           </div>

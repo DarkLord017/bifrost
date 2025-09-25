@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -79,6 +80,8 @@ export default {
         'soft': 'var(--shadow-soft)',
         'card': 'var(--shadow-card)',  
         'lifted': 'var(--shadow-lifted)',
+        brutal: "4px 4px 0px #000",
+        "brutal-lg": "8px 8px 0px #000",
       },
       keyframes: {
         "accordion-down": {
@@ -163,6 +166,18 @@ export default {
             transform: "translateX(-10px) translateY(-5px)"
           }
         },
+        "glitch-x": {
+            "0%": { transform: "translateX(0)" },
+            "20%": { transform: "translateX(-2px)" },
+            "40%": { transform: "translateX(2px)" },
+            "60%": { transform: "translateX(-1px)" },
+            "80%": { transform: "translateX(1px)" },
+            "100%": { transform: "translateX(0)" },
+          },
+          "blink": {
+            "0%, 49%": { opacity: "1" },
+            "50%, 100%": { opacity: "0" },
+          },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -175,8 +190,11 @@ export default {
         "rotate-reverse": "rotate-reverse 15s linear infinite",
         "pulse-slow": "pulse-slow 4s ease-in-out infinite",
         "drift": "drift 12s ease-in-out infinite",
+        "glitch-x": "glitch-x 0.5s steps(2, end) infinite",
+        "blink": "blink 1s steps(1, end) infinite",
+
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

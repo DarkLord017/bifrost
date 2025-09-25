@@ -1,9 +1,9 @@
+/* Aligned VNNs Design System - Editorial, trustworthy, handcrafted feel */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Aligned VNNs Design System - Editorial, trustworthy, handcrafted feel */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {

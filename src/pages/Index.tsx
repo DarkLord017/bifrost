@@ -98,7 +98,7 @@ const Index = () => {
               </h1>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Search vectors with <em>verifiable</em> results. Every search is cryptographically proven 
-                and submitted to Aligned Layer for transparent verification.
+                and submitted to zk verify for transparent verification.
               </p>
             </div>
 
@@ -213,7 +213,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-lg font-semibold">Verify Results</h3>
                 <p className="text-muted-foreground text-sm">
-                  All proofs are submitted to Aligned Layer, making results publicly verifiable and tamper-evident.
+                  All proofs are submitted to zk verify, making results publicly verifiable and tamper-evident.
                 </p>
               </div>
             </div>
