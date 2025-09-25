@@ -109,7 +109,7 @@ Description: A space adventure with galactic battles
 
 ## 🚀 Deployment
 
-  * **Live Demo**: `https://.....`
+  * **Live Demo**: `[https://bifrost.app](https://bifrost-ebon.vercel.app/)`
   * **Smart Contract on Horizen Testnet**: [`0xDa71...210a2`](https://www.google.com/search?q=%5Bhttps://horizen-explorer-testnet.appchain.base.org/address/0xDa713271a47abd0421183c330f720a67C69210a2%3Ftab%3Dtxs%5D\(https://horizen-explorer-testnet.appchain.base.org/address/0xDa713271a47abd0421183c330f720a67C69210a2%3Ftab%3Dtxs\))
 
 -----
